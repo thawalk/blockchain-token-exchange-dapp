@@ -45,6 +45,25 @@ contract TokenFarm {
 		hasStaked[msg.sender] = true;
 	}
 
+	//unstaking tokens (withdraw)
+	function unstakeTokens() public {
+		
+		// fetch the staking balance
+		uint balance = stakingBalance[msg.sender]
+		
+		// require amount to be greater than zero
+		require (balance > 0, "staking balance cannot be 0");
+
+		// transfer mock dai tokens back to the investor
+		daiToken.transfer(msg.sender, balance);
+
+		//reset staking balance
+		stakingBalance[msg.sender] = 0;
+
+		// update the staking status
+		isStaking[msg.sender] = false;
+	}
+
 	//Issuing Tokens (giving the investor dapp tokens as reward for staking dai tokens)
 	function issueTokens () public {
 		//only owner can call this function
