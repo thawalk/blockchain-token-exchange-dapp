@@ -49,10 +49,10 @@ contract TokenFarm {
 	function unstakeTokens() public {
 		
 		// fetch the staking balance
-		uint balance = stakingBalance[msg.sender]
+		uint balance = stakingBalance[msg.sender];
 		
 		// require amount to be greater than zero
-		require (balance > 0, "staking balance cannot be 0");
+		require(balance > 0, "staking balance cannot be 0");
 
 		// transfer mock dai tokens back to the investor
 		daiToken.transfer(msg.sender, balance);
